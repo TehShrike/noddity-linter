@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Check your Noddity posts and make sure that they won't cause render errors",
   "main": "index.js",
+  "bin": "./bin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +22,18 @@
   "bugs": {
     "url": "https://github.com/TehShrike/noddity-linter/issues"
   },
-  "homepage": "https://github.com/TehShrike/noddity-linter#readme"
+  "homepage": "https://github.com/TehShrike/noddity-linter#readme",
+  "dependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "glob": "^7.1.1",
+    "level-mem": "0.18.0",
+    "noddity-butler": "^2.6.0",
+    "noddity-fs-retrieval": "^1.1.0",
+    "noddity-linkifier": "^2.2.1",
+    "p-map": "^1.0.0",
+    "then-denodeify": "^1.0.0",
+    "validate-noddity-post": "^3.0.0"
+  }
 }
