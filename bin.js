@@ -1,11 +1,5 @@
 #!/usr/bin/env node
 
-require('babel-polyfill')
-require('babel-register')({
-	plugins: [
-		'transform-async-to-generator',
-	]
-})
 require('ractive').DEBUG = false
 const lint = require('./index.js')
 

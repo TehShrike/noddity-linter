@@ -9,7 +9,7 @@ const Validator = require('validate-noddity-post')
 
 const promiseMap = require('p-map')
 
-module.exports = async function lint({ noddityRoot, pattern = '**/*.m?(m)d', data = {}, template }) {
+module.exports = function lint({ noddityRoot, pattern = '**/*.m?(m)d', data = {}, template }) {
 	const db = levelmem('wheee')
 	const retrieval = new Retrieval(noddityRoot)
 	const butler = new Butler(retrieval, db)
@@ -22,9 +22,9 @@ module.exports = async function lint({ noddityRoot, pattern = '**/*.m?(m)d', dat
 		template
 	})
 
-	const filePaths = await glob(pattern, { cwd: noddityRoot })
-
-	return promiseMap(filePaths, filePath => {
-		return validatePost(filePath).then(({ error }) => ({ error, filePath }))
-	}, { concurrency: 2 })
+	return glob(pattern, { cwd: noddityRoot }).then(filePaths => {
+		return promiseMap(filePaths, filePath => {
+			return validatePost(filePath).then(({ error }) => ({ error, filePath }))
+		}, { concurrency: 2 })
+	})
 }
