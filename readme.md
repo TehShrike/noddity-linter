@@ -2,6 +2,8 @@ Lint a directory full of [Noddity](http://noddity.com) posts to verify that they
 
 # CLI
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TehShrike/noddity-linter.svg)](https://greenkeeper.io/)
+
 ```sh
 noddity-linter "./content/" ""
 ```
