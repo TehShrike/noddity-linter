@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-require('ractive').DEBUG = false
 const lint = require('./index.js')
 
 const noddityRoot = process.argv[2]
