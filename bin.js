@@ -1,28 +1,35 @@
 #!/usr/bin/env node
 
-const lint = require('./index.js')
+const mri = require(`mri`)
+const lint = require(`./index.js`)
 
-const noddityRoot = process.argv[2]
-const pattern = process.argv[3]
+const {
+	useIndex,
+	_: [ noddityRoot, pattern ],
+} = mri(process.argv.slice(2), {
+	default: {
+		useIndex: true,
+	},
+})
 
 if (noddityRoot) {
-	console.log(`Linting ${noddityRoot}`)
+	console.log(`Linting ${ noddityRoot }`)
 } else {
-	throw new Error('Usage: noddity-linter noddityRootDir [pattern]')
+	throw new Error(`Usage: noddity-linter [--useIndex] noddityRootDir [pattern]`)
 }
 
-lint({ noddityRoot, pattern }).then(validatorResults => {
+lint({ noddityRoot, pattern, useIndex }).then(validatorResults => {
 	const errors = validatorResults
 		.filter(({ error }) => error)
 
 	if (errors.length) {
-		errors.forEach(({ error, filePath }) => console.log(`#### ${filePath}:\n\t${error.message}`))
-		console.error(errors.length, 'posts are invalid')
+		errors.forEach(({ error, filePath }) => console.log(`#### ${ filePath }:\n\t${ error.message }`))
+		console.error(`${ errors.length } posts are invalid`)
 		process.exit(1)
 	} else {
-		console.log('Checked', validatorResults.length, 'posts')
+		console.log(`Checked ${ validatorResults.length } posts`)
 	}
 }).catch(error => {
-	console.log('error while linting', error)
+	console.log(`error while linting`, error)
 	process.exit(1)
 })

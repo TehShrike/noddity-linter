@@ -26,6 +26,7 @@
   "dependencies": {
     "glob": "^7.1.1",
     "level-mem": "0.18.0",
+    "mri": "^1.1.4",
     "noddity-butler": "^2.6.0",
     "noddity-fs-retrieval": "^1.1.0",
     "noddity-linkifier": "^2.2.1",
